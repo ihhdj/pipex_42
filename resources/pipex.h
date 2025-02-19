@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:00:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/19 12:36:33 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:03:38 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <unistd.h>
 # include <sys/stat.h>
 
-int	parsing(int argc, char **argv);
+int	parsing(int argc, char **argv, char **env);
 int	check_acces(char **argv);
+char	*find_env(char **argv, char **env);
+char	*get_path(char *str, char **env);
 #endif
