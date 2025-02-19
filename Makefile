@@ -6,11 +6,11 @@
 #    By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/16 10:57:00 by ihhadjal          #+#    #+#              #
-#    Updated: 2025/02/16 11:05:02 by ihhadjal         ###   ########.fr        #
+#    Updated: 2025/02/19 11:10:52 by ihhadjal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = 
+SRCS = code/main.c code/utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = pipex
 CC = gcc
