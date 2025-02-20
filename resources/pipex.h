@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:00:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/19 15:03:38 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:59:23 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,15 @@
 # include <unistd.h>
 # include <sys/stat.h>
 
-int	parsing(int argc, char **argv, char **env);
+typedef struct s_pipe
+{
+    char    *path;
+    char    *cmd;
+}   t_pipe;
+
+int	parsing(int argc, char **argv, char **env, t_pipe *pipe);
 int	check_acces(char **argv);
-char	*find_env(char **argv, char **env);
+char	*find_env(char **argv, char **env, t_pipe *pipe);
 char	*get_path(char *str, char **env);
+void	free_string(char **str);
 #endif

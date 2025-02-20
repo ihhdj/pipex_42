@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:19:17 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/19 14:33:18 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:59:07 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	parsing(argc, argv, env);
+	t_pipe pipe;
+
+	parsing(argc, argv, env, &pipe);
 }
