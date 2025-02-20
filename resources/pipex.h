@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:00:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/20 11:59:23 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/20 12:09:11 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 typedef struct s_pipe
 {
     char    *path;
-    char    *cmd;
+    char    *cmd_path;
 }   t_pipe;
 
 int	parsing(int argc, char **argv, char **env, t_pipe *pipe);
 int	check_acces(char **argv);
-char	*find_env(char **argv, char **env, t_pipe *pipe);
+char	*find_cmd(char **argv, char **env, t_pipe *pipe);
 char	*get_path(char *str, char **env);
 void	free_string(char **str);
 #endif

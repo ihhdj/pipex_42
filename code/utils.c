@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:09:01 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/20 11:59:18 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/20 13:12:07 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	parsing(int argc, char **argv, char **env, t_pipe *pipe)
 	{
 		if (check_acces(argv))
 			return (ft_printf("access error\n"), 1);
-		pipe->cmd = find_env(argv, env, pipe);
-		if (pipe->cmd)
-			free(pipe->cmd);
+		pipe->cmd_path = find_cmd(argv, env, pipe);
+		if (pipe->cmd_path)
+			free(pipe->cmd_path);
 	}
 	else
 		return (ft_printf("Arguments error\n"), 1);
@@ -58,7 +58,7 @@ char	*get_path(char *str, char **env)
 	}
 	return NULL;
 }
-char	*find_env(char **argv, char **env, t_pipe *pipe)
+char	*find_cmd(char **argv, char **env, t_pipe *pipe)
 {
 	char	**split_path;
 	char	*join_path;
