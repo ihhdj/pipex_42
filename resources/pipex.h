@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:00:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/21 09:47:59 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 11:00:43 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ typedef struct s_pipe
 {
     char    *path;
     char    *cmd_path;
+    char    *cmd_path1;
     char    **cmd_args;
+    char    **cmd_args1;
 }   t_pipe;
 
 int	parsing(int argc, char **argv, char **env, t_pipe *pipe);
@@ -37,4 +39,7 @@ char	*find_cmd(char *cmd, char **env, t_pipe *pipe);
 char	*get_path(char *str, char **env);
 void	free_string(char **str);
 char    **treat_args(char **argv, t_pipe *pipe);
+char    **treat_args2(char **argv, t_pipe *pipe);
+void    init_struct(t_pipe *pipe);
+void    clean(t_pipe *pipe);
 #endif
