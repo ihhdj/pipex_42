@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:09:01 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/21 10:52:17 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 17:03:04 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	parsing(int argc, char **argv, char **env, t_pipe *pipe)
 		free_string(cmd1);
 		pipe->cmd_args = treat_args(argv, pipe);
 		pipe->cmd_args1 = treat_args2(argv, pipe);
+		exec_cmd(argv, pipe);
 	}
 	else
 		return (ft_printf("Arguments error\n"), 1);

@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:37:07 by iheb              #+#    #+#             */
-/*   Updated: 2025/02/21 11:02:55 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 17:11:55 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,35 @@ char    **treat_args2(char **argv, t_pipe *pipe)
         return NULL;
     }
     return(arg);
+}
+void    exec_cmd(char **argv, t_pipe *pipex)
+{
+    int pipefd[2];
+    pid_t process1;
+    pid_t process2;
+    
+    pipe(pipefd);
+    (void)argv;
+    process1 = fork();
+    if (process1 == 0)
+    {
+        dup2(pipefd[1], STDOUT_FILENO);
+        close(pipefd[1]);
+        close(pipefd[0]);
+        execve(pipex->cmd_path, pipex->cmd_args, NULL);
+    }
+    process2 = fork();
+    if (process2 == 0)
+    {
+        dup2(pipefd[0], STDIN_FILENO);
+        close(pipefd[0]);
+        close(pipefd[1]);
+        execve(pipex->cmd_path1, pipex->cmd_args1, NULL);
+    }
+    close(pipefd[0]);
+    close(pipefd[1]);
+    waitpid(process1, NULL, 0);
+    waitpid(process2, NULL, 0);
 }
 
 void    init_struct(t_pipe *pipe)
