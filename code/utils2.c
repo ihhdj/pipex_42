@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:37:07 by iheb              #+#    #+#             */
-/*   Updated: 2025/02/21 11:00:28 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 11:02:55 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 char    **treat_args(char **argv, t_pipe *pipe)
 {
     char    **arg;
-    arg = ft_split(argv[2], 32);
+    arg = ft_split(argv[2], ' ');
     if (!arg)
         return NULL;
     free(arg[0]);
