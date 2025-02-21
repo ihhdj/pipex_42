@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:09:01 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/21 10:24:13 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 10:24:54 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	parsing(int argc, char **argv, char **env, t_pipe *pipe)
 		pipe->cmd_path = find_cmd(cmd[0], env, pipe);
 		free_string(cmd);
 		pipe->cmd_args = treat_args(argv, pipe);
-		int i = 0;
-		while(pipe->cmd_args[i])
-			printf("%s\n", pipe->cmd_args[i++]);
 		if (pipe->cmd_path)
 			free(pipe->cmd_path);
 	}
