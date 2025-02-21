@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+         #
+#    By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/16 10:57:00 by ihhadjal          #+#    #+#              #
-#    Updated: 2025/02/19 11:10:52 by ihhadjal         ###   ########.fr        #
+#    Updated: 2025/02/21 08:40:31 by iheb             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = code/main.c code/utils.c
+SRCS = code/main.c code/utils.c code/utils2.c
 OBJS = ${SRCS:.c=.o}
 NAME = pipex
 CC = gcc

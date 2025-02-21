@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:31:40 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/08 13:21:47 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 08:41:21 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,4 @@ char	*ft_strdup(const char *s)
 
 size_t	ft_strlen(const char *s);
 
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		c;
-	char	*result;
-
-	i = 0;
-	c = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	result = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!result)
-		return (NULL);
-	while (s1[i])
-	{
-		result[i] = s1[i];
-		i++;
-	}
-	while (s2[c])
-	{
-		result[i] = s2[c];
-		i++;
-		c++;
-	}
-	result[i] = '\0';
-	return (result);
-}
+char	*ft_strjoin(char *s1, char *s2);

@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:09:01 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/20 13:12:07 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/21 10:24:13 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 int	parsing(int argc, char **argv, char **env, t_pipe *pipe)
 {
+	char **cmd;
+
 	if (argc == 5)
 	{
 		if (check_acces(argv))
 			return (ft_printf("access error\n"), 1);
-		pipe->cmd_path = find_cmd(argv, env, pipe);
+		cmd = ft_split(argv[2], ' ');
+		if (!cmd)
+			return (0);
+		pipe->cmd_path = find_cmd(cmd[0], env, pipe);
+		free_string(cmd);
+		pipe->cmd_args = treat_args(argv, pipe);
+		int i = 0;
+		while(pipe->cmd_args[i])
+			printf("%s\n", pipe->cmd_args[i++]);
 		if (pipe->cmd_path)
 			free(pipe->cmd_path);
 	}
@@ -58,7 +68,7 @@ char	*get_path(char *str, char **env)
 	}
 	return NULL;
 }
-char	*find_cmd(char **argv, char **env, t_pipe *pipe)
+char	*find_cmd(char *cmd, char **env, t_pipe *pipe)
 {
 	char	**split_path;
 	char	*join_path;
@@ -73,7 +83,7 @@ char	*find_cmd(char **argv, char **env, t_pipe *pipe)
 	while (split_path[i])
 	{
 		tmp = ft_strjoin(split_path[i], "/");
-		join_path = ft_strjoin(tmp, argv[2]);
+		join_path = ft_strjoin(tmp, cmd);
 		free(tmp);
 		if (access(join_path, X_OK) == 0)
 		{
