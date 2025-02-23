@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 08:37:07 by iheb              #+#    #+#             */
-/*   Updated: 2025/02/21 17:11:55 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/23 11:23:48 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,39 +47,36 @@ char    **treat_args2(char **argv, t_pipe *pipe)
 void    exec_cmd(char **argv, t_pipe *pipex)
 {
     int pipefd[2];
-    pid_t process1;
-    pid_t process2;
-    
+
+    pipex->infile = open(argv[1], O_RDONLY);
+    pipex->outfile = open(argv[4], O_WRONLY | O_CREAT);
     pipe(pipefd);
-    (void)argv;
-    process1 = fork();
-    if (process1 == 0)
+    pipex->process1 = fork();
+    if (pipex->process1 == 0)
     {
+        dup2(pipex->infile, STDIN_FILENO);
         dup2(pipefd[1], STDOUT_FILENO);
-        close(pipefd[1]);
-        close(pipefd[0]);
+        close_pipe(pipefd[0], pipefd[1], pipex);
         execve(pipex->cmd_path, pipex->cmd_args, NULL);
     }
-    process2 = fork();
-    if (process2 == 0)
+    pipex->process2 = fork();
+    if (pipex->process2 == 0)
     {
         dup2(pipefd[0], STDIN_FILENO);
-        close(pipefd[0]);
-        close(pipefd[1]);
+        dup2(pipex->outfile, STDOUT_FILENO);
+        close_pipe(pipefd[1], pipefd[0], pipex);
         execve(pipex->cmd_path1, pipex->cmd_args1, NULL);
     }
-    close(pipefd[0]);
-    close(pipefd[1]);
-    waitpid(process1, NULL, 0);
-    waitpid(process2, NULL, 0);
+    close_pipe(pipefd[0], pipefd[1], pipex);
+    waitpid(pipex->process1, NULL, 0);
+    waitpid(pipex->process2, NULL, 0);
 }
-
-void    init_struct(t_pipe *pipe)
+void	close_pipe(int pipefd1, int pipefd2, t_pipe *pipe)
 {
-    pipe->cmd_path = NULL;
-    pipe->cmd_path1 = NULL;
-    pipe->cmd_args = NULL;
-    pipe->cmd_args1 = NULL;
+	close(pipefd1);
+	close(pipefd2);
+	close(pipe->infile);
+	close(pipe->outfile);
 }
 
 void    clean(t_pipe *pipe)

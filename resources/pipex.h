@@ -6,7 +6,7 @@
 /*   By: iheb <iheb@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 11:00:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2025/02/21 17:03:15 by iheb             ###   ########.fr       */
+/*   Updated: 2025/02/23 11:19:32 by iheb             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ typedef struct s_pipe
     char    *cmd_path1;
     char    **cmd_args;
     char    **cmd_args1;
-    int     outfile_fd;
-    int     infile_fd;
+    int     infile;
+    int     outfile;
+    pid_t   process1;
+    pid_t   process2;
 }   t_pipe;
 
 int	parsing(int argc, char **argv, char **env, t_pipe *pipe);
@@ -45,4 +47,5 @@ char    **treat_args2(char **argv, t_pipe *pipe);
 void    init_struct(t_pipe *pipe);
 void    clean(t_pipe *pipe);
 void    exec_cmd(char **argv, t_pipe *pipex);
+void	close_pipe(int pipefd1, int pipefd2, t_pipe *pipe);
 #endif
